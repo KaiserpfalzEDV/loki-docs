@@ -1,6 +1,6 @@
 baseURL = 'https://docs.loki.kaiserpfalz-edv.de/'
 languageCode = 'de-de'
-title = 'Kaiserpfalz EDV-Service - Cluster LOKI
+title = 'Kaiserpfalz EDV-Service - Cluster LOKI'
 theme = 'shadocs'
 
 copyright              = "copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti"
@@ -60,7 +60,7 @@ publishDir             = "public"
   homeLayout              = "onboarding"
   siteContentOrder        = "weight"
   toc                   = true
-  globalBanner          = true
+  globalBanner          = false
   currentVersion          = "latest"
   latestVersionUrl        = "https://docs.loki.kaiserpfalz-edv.de"
   # enforceRefrelLinks    = true
