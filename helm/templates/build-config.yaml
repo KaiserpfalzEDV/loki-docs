@@ -27,12 +27,8 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: .
+      dockerFilePath: .
       imageOptimizationPolicy: SkipLayers
-      from:
-        kind: ImageStreamTag
-        namespace: {{ .Release.Namespace }}
-        name: "{{ $fullname }}-hugo-builder:{{ .Values.buildimage.tag }}"
   postCommit: {}
   source:
     type: Git
