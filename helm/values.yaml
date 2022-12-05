@@ -62,11 +62,11 @@ tls:
 
 resources:
   limits:
-    cpu: 200m
-    memory: 200Mi
+    cpu: 20m
+    memory: 20Mi
   requests:
-    cpu: 100m
-    memory: 100Mi
+    cpu: 20m
+    memory: 20Mi
 
 autoscaling:
   enabled: true
