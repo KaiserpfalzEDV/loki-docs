@@ -14,7 +14,7 @@ FROM ubi8/nginx-120
 
 USER root
 RUN mkdir -p /tmp/src
-COPY --from=builder /opt/app-root/src/public/* ./
+COPY --from=builder /opt/app-root/src/public/ ./
 
 RUN /usr/libexec/s2i/assemble
 
