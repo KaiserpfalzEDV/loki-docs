@@ -26,8 +26,8 @@ publishDir             = "public"
     target = 'static/openapi'
 
 [taxonomies]
-  category = "categories"
-  tag = "tags"
+  category = "Kategorien"
+  tag = "Ettiketten"
 
 [outputs]
   home = ["HTML", "JSON"]
@@ -72,9 +72,9 @@ publishDir             = "public"
     name = 'latest'
     url  = 'https://docs.loki.kaiserpfalz-edv.de'
   [params.taxonomies]
-    [params.taxonomies.categories]
+    [params.taxonomies.Kategorien]
       icon = "fa-solid fa-table-cells"
-    [params.taxonomies.tags]
+    [params.taxonomies.Ettiketten]
       icon = "fa-solid fa-tag"
   [params.includes]
     jsModules = [
