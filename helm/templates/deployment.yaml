@@ -35,8 +35,6 @@ spec:
           {{- toYaml .Values.resources | nindent 10 }}
         securityContext:
           {{- toYaml .Values.podSecurityContext | nindent 10 }}
-        securityContext:
-          {{- toYaml .Values.securityContext | nindent 10 }}
         ports:
         - name: http
           containerPort: 8080
@@ -56,6 +54,8 @@ spec:
             - name: Host
               value: {{ .Values.host.main }}
       serviceAccountName: {{ $serviceAccountName }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
       automountServiceAccountToken: false
       {{- with .Values.nodeSelector }}
       nodeSelector:
