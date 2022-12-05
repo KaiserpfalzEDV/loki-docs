@@ -7,6 +7,7 @@ USER root
 
 ADD ./ /opt/app-root/src
 
+RUN git submodule update --init --recursive 
 RUN hugo
 
 FROM ubi8/nginx-120
