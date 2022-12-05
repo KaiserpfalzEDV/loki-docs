@@ -1,4 +1,4 @@
-FROM loki-docs-hugo-builder:0.107.0 AS builder
+FROM kes-cluster-management/loki-docs-hugo-builder:0.107.0 AS builder
 
 ENV GOPATH "/opt/go"
 ENV PATH "/opt/go/bin:$PATH"
