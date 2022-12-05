@@ -42,5 +42,9 @@ spec:
     contextDir: /
   triggers:
     - type: ConfigChange
+    - type: GitHub
+      gitHub:
+        secretReference:
+          name: "{{ $fullname }}-trigger-secret"
   runPolicy: Serial
 

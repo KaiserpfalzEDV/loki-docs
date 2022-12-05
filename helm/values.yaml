@@ -5,8 +5,9 @@
 replicaCount: 1
 
 source:
-  uri: https://github.com/kaiserpfalz-edv/loki-docs.git
+  uri: https://github.com/KaiserpfalzEDV/loki-docs.git
   ref: main
+  triggerSecret: Fahc9We4fiemup2u
 
 image:
   pullPolicy: IfNotPresent
