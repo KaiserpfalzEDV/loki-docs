@@ -14,13 +14,13 @@ spec:
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
-    {{- range $r := .Values.autoscaling.utilitzation }}
+  {{- range $r := .Values.autoscaling.utlilization }}
     - type: Resource
       resource:
         name: {{ $r.name }}
         target:
-          type: Utilization
+          type: AverageValue
           averageUtilization: {{ $r.percentage }}
-    {{- end }}
+  {{- end }}
 
 {{- end }}
