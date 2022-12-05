@@ -29,10 +29,7 @@ serviceAccount:
 podAnnotations:
   alpha.image.policy.openshift.io/resolve-names: '*'
 
-podSecurityContext: {}
-  # fsGroup: 2000
-
-securityContext:
+podSecurityContext:
   allowPrivilegeEscalation: false
   runAsNonRoot: true
   capabilities:
@@ -40,6 +37,9 @@ securityContext:
     - ALL
   seccompProfile:
     type: RuntimeDefault
+  # fsGroup: 2000
+
+securityContext: {}
 
 service:
   type: ClusterIP
