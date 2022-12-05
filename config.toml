@@ -26,8 +26,8 @@ publishDir             = "public"
     target = 'static/openapi'
 
 [taxonomies]
-  category = "Kategorien"
-  tag = "Ettiketten"
+  category = "categories"
+  tag = "tags"
 
 [outputs]
   home = ["HTML", "JSON"]
