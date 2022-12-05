@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ $fullname }}:latest"
+        image: "image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/{{ $fullname }}:latest"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- with .Values.imagePullSecrets }}
         imagePullSecrets:

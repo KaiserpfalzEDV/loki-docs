@@ -1,4 +1,4 @@
-FROM kes-cluster-management/loki-docs-hugo-builder:0.107.0 AS builder
+FROM image-registry.openshift-image-registry.svc:5000/kes-cluster-management/loki-docs-hugo-builder:0.107.0 AS builder
 
 ENV GOPATH "/opt/go"
 ENV PATH "/opt/go/bin:$PATH"

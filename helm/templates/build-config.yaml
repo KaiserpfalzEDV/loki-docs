@@ -27,7 +27,6 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerFilePath: .
       imageOptimizationPolicy: SkipLayers
   postCommit: {}
   source:
