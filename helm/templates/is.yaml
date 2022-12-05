@@ -1,0 +1,22 @@
+{{- $fullName := include "loki-docs.fullname" . -}}
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: "{{ $fullName }}-hugo-builder"
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  dockerImageRepository: {{ .Values.buildimage.repository }}
+  lookupPolicy:
+    local: true
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  lookupPolicy:
+    local: true

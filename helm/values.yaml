@@ -1,0 +1,83 @@
+# Default values for loki-docs.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+source:
+  uri: https://github.com/kaiserpfalz-edv/loki-docs.git
+  ref: main
+
+image:
+  pullPolicy: IfNotPresent
+
+buildimage:
+  repository: quay.io/klenkes74/hugo-builder
+  pullPolicy: IfNotPresent
+  tag: "0.107.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations:
+  alpha.image.policy.openshift.io/resolve-names: '*'
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+
+host:
+  main: docs.loki.kaiserpfalz-edv.de
+  other:
+  - docs.loki.kaiserpfalz-edv.de
+  - info.loki.kaiserpfalz-edv.de
+  - about.loki.kaiserpfalz-edv.de
+
+tls:
+  issuer:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  duration: 2160h
+  renewBefore: 1800h
+
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  utlilization:
+  - name: cpu
+    percentage: 90
+  - name: memory
+    percentage: 90
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

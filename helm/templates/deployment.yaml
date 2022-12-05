@@ -1,0 +1,72 @@
+{{- $fullname := include "loki-docs.fullname" . -}}
+{{- $serviceAccountName := include "loki-docs.serviceAccountName" . -}}
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ $fullname }}
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "loki-docs.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "loki-docs.labels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ $fullname }}:latest"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- with .Values.imagePullSecrets }}
+        imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        securityContext:
+          {{- toYaml .Values.podSecurityContext | nindent 10 }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: http
+            httpHeaders:
+            - name: Host
+              value: {{ .Values.host.main }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: http
+            httpHeaders:
+            - name: Host
+              value: {{ .Values.host.main }}
+      serviceAccountName: {{ $serviceAccountName }}
+      automountServiceAccountToken: false
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

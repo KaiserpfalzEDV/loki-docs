@@ -1,0 +1,46 @@
+
+{{ $fullname := include "loki-docs.fullname" . }}
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: {{ $fullname }}
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: "{{ $fullname }}:latest"
+    imageLabels:
+      - name: io.k8s.display-name
+        value: {{ $fullname }}
+      - name: io.k8s.description
+        value: {{ .Values.description }}
+      - name: io.openshift.tags
+        value: 'hugo,documentation,static web'
+      - name: io.openshift.expose-services
+        value: '8080:http'
+  resources: {}
+  successfulBuildsHistoryLimit: 1
+  failedBuildsHistoryLimit: 2
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: .
+      imageOptimizationPolicy: SkipLayers
+      from:
+        kind: ImageStreamTag
+        namespace: {{ .Release.Namespace }}
+        name: "{{ $fullname }}-hugo-builder"
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: {{ .Values.source.uri }}
+      ref: {{ .Values.source.ref }}
+    contextDir: /
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
+

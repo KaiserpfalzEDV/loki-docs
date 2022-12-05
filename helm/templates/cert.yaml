@@ -1,0 +1,26 @@
+{{ $fullname := include "loki-docs.fullname" . }}
+---
+kind: Certificate
+apiVersion: cert-manager.io/v1
+metadata:
+  name: {{ $fullname }}-cert
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  commonName: {{ .Values.host.main | quote }}
+  dnsNames:
+  {{- range .Values.host.other }}
+  - {{ . | quote }}
+  {{- end }}
+  uris:
+  {{- range .Values.host.other }}
+  - {{ . | quote }}
+  {{- end }}
+  issuerRef:
+    {{- toYaml .Values.tls.issuer | nindent 4 }}
+  secretName: {{ $fullname }}-tls
+  duration: {{ .Values.tls.duration }}
+  renewBefore: {{ .Values.tls.renewBefore }}
+  usages:
+  - server auth
+

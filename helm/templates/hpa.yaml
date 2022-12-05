@@ -1,0 +1,26 @@
+{{- if .Values.autoscaling.enabled }}
+---
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2
+metadata:
+  name: {{ include "loki-docs.fullname" . }}
+  labels:
+    {{- include "loki-docs.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "loki-docs.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics:
+    {{- range $r := .Values.autoscaling.utilitzation }}
+    - type: Resource
+      resource:
+        name: {{ $r.name }}
+        target:
+          type: Utilization
+          averageUtilization: {{ $r.percentage }}
+    {{- end }}
+
+{{- end }}

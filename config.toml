@@ -1,0 +1,89 @@
+baseURL = 'https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de/'
+languageCode = 'de-de'
+title = 'Documentation for the hugo-on-openshift-system'
+theme = 'shadocs'
+
+copyright              = "copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti"
+defaultContentLanguage = "de"
+enableEmoji            = true
+enableGitInfo          = true
+metaDataFormat         = "yaml"
+publishDir             = "public"
+
+[Author]
+  name = "Roland T. Lichti"
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = '0.91.0'
+    max = ''
+  [[module.mounts]]
+    source = 'asyncapi'
+    target = 'static/asyncapi'
+  [[module.mounts]]
+    source = 'openapi'
+    target = 'static/openapi'
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "JSON"]
+
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.tableOfContents]
+    ordered    = false
+    startLevel = 1
+    endLevel   = 6
+  [markup.goldmark.renderer]
+    unsafe = false
+
+[Languages]
+  [Languages.de]
+    contentDir   = "content/de"
+    title        = "hugo-on-openshift"
+    weight       = 1
+    languageName = "Deutsch"
+
+#
+# Specific configuration
+#
+[params]
+  logo                    = "images/logo.png"
+  logoTouch               = "images/logoTouch.png"
+  image404                = "images/404.gif"
+  favicon                 = "images/favicon.png"
+  faviconmd               = "![Favicon](/images/favicon.png)"
+  homeLayout              = "onboarding"
+  siteContentOrder        = "weight"
+  toc                   = true
+  globalBanner          = true
+  currentVersion          = "latest"
+  latestVersionUrl        = "https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de"
+  # enforceRefrelLinks    = true
+  [params.navbar.shortcuts]
+    [params.navbar.shortcuts.example]
+      keys     = ["Shift","1"]
+      function = "scExample"
+  [[params.navbar.versions]]
+    name = 'latest'
+    url  = 'https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de'
+  [params.taxonomies]
+    [params.taxonomies.categories]
+      icon = "fa-solid fa-table-cells"
+    [params.taxonomies.tags]
+      icon = "fa-solid fa-tag"
+  [params.includes]
+    jsModules = [
+        "js/shortcuts.js"
+      ]
+    js        = []
+    css       = [
+        "css/shortcuts.css"
+      ]
+  [params.versions]
+    hugo_min         = "[0.91.0](https://github.com/gohugoio/hugo/releases/tag/v0.91.0)"
+    bulma            = "[0.9.3](https://github.com/jgthms/bulma/releases/tag/0.9.3)"
