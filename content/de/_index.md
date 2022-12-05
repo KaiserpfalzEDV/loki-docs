@@ -1,8 +1,13 @@
 ---
 weight: 0
-title: "Hugo-on-OpenShift"
+title: "Cluster LOKI - Kaiserpfalz EDV-Service"
 description: "Use Hugo on OpenShift"
-categories: ["hugo"]
+categories: ["explenation", "how-to", "tutorial", "reference"]
 ---
 
-Hello!
+Willkommen auf dem Cluster LOKI des Kaiserpfalz EDV-Service.
+
+- (Tutorial)[tutorial/]
+- (How-To)[how-to/]
+- (Explenation)[explenation/]
+- (Reference)[reference/]

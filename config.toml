@@ -1,6 +1,6 @@
-baseURL = 'https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de/'
+baseURL = 'https://docs.loki.kaiserpfalz-edv.de/'
 languageCode = 'de-de'
-title = 'Documentation for the hugo-on-openshift-system'
+title = 'Kaiserpfalz EDV-Service - Cluster LOKI
 theme = 'shadocs'
 
 copyright              = "copyright (c) 2022 Kaiserpfalz EDV-Service, Roland T. Lichti"
@@ -44,7 +44,7 @@ publishDir             = "public"
 [Languages]
   [Languages.de]
     contentDir   = "content/de"
-    title        = "hugo-on-openshift"
+    title        = "Cluster LOKI - Kaiserpfalz EDV-Service"
     weight       = 1
     languageName = "Deutsch"
 
@@ -62,7 +62,7 @@ publishDir             = "public"
   toc                   = true
   globalBanner          = true
   currentVersion          = "latest"
-  latestVersionUrl        = "https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de"
+  latestVersionUrl        = "https://docs.loki.kaiserpfalz-edv.de"
   # enforceRefrelLinks    = true
   [params.navbar.shortcuts]
     [params.navbar.shortcuts.example]
@@ -70,7 +70,7 @@ publishDir             = "public"
       function = "scExample"
   [[params.navbar.versions]]
     name = 'latest'
-    url  = 'https://hugo-on-openshift.apps.loki.kaiserpfalz-edv.de'
+    url  = 'https://docs.loki.kaiserpfalz-edv.de'
   [params.taxonomies]
     [params.taxonomies.categories]
       icon = "fa-solid fa-table-cells"

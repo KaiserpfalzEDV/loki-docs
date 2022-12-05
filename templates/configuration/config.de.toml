@@ -17,7 +17,7 @@
   # Curent version of the website
   currentVersion          = "latest"
   # Url of the latest version of the website
-  latestVersionUrl        = "https://hugo-on-openshift.apps.kaiserpfalz-edv.de/"
+  latestVersionUrl        = "https://docs.loki.kaiserpfalz-edv.de/"
   # Enforce Link resolution using relref function (https://gohugo.io/content-management/cross-references/)
   enforceRefrelLinks      = true
   # Keyboard shortcuts list
